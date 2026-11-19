@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de trabajo · IA en entornos financieros digitales</title>
+<style>
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0; background: #eef3f8; color: #17283b;
+    font: 1rem/1.55 system-ui, sans-serif;
+  }
+  main { width: min(900px, 94%); margin: 2rem auto; }
+  header, section { padding: clamp(1rem, 4vw, 2rem); border-radius: 14px; }
+  header { background: #132c46; color: white; }
+  header p, h1 { margin: .25rem 0; }
+  header p:first-child { color: #a6e4df; }
+  nav { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+  button {
+    font: inherit; font-weight: 650; padding: .65rem .9rem; cursor: pointer;
+    border: 1px solid #647b91; border-radius: 8px; color: #132c46; background: white;
+  }
+  button[aria-selected="true"], button[type="submit"] {
+    background: #075b57; border-color: #075b57; color: white;
+  }
+  :focus-visible { outline: 3px solid #a44600; outline-offset: 3px; }
+  section { background: white; border: 1px solid #c8d5e2; }
+  h2, h3 { margin: 0 0 .5rem; }
+  fieldset {
+    min-width: 0; margin: 1.5rem 0; padding: .5rem 1rem 1rem;
+    border: 1px solid #c8d5e2; border-radius: 8px;
+  }
+  legend, label strong { color: #075b57; font-weight: 700; }
+  .pregunta { margin: 1.2rem 0; }
+  label { display: block; margin-bottom: .35rem; }
+  label strong { display: block; margin-bottom: .2rem; }
+  textarea, input {
+    display: block; width: 100%; padding: .65rem; font: inherit;
+    color: inherit; background: #fbfdff; border: 1px solid #647b91; border-radius: 7px;
+  }
+  textarea { min-height: 6rem; resize: vertical; }
+  input { max-width: 32rem; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p>Educación financiera y consumo responsable · 4.º de ESO</p>
+    <h1>IA en entornos financieros digitales</h1>
+    <p>Lee el manual y los dos casos. Responde con tus palabras y descarga el PDF antes de cerrar la ficha.</p>
+  </header>
+  <nav id="pestanas" role="tablist" aria-label="Apartados de la ficha"></nav>
+  <div id="paneles"></div>
+  <noscript>Activa JavaScript para rellenar la ficha y descargar el PDF.</noscript>
+</main>
+
+<script>
+"use strict";
+
+const preguntasZeus = [
+  ["Caso y fuentes",
+   "¿Qué caso habéis elegido? Anotad dónde y cuándo ocurrió si consta, y citad las fuentes consultadas: medio u organismo, título, fecha y enlace."],
+  ["Tecnología de IA utilizada",
+   "¿Qué tecnología se utilizó y qué papel tuvo en el engaño? Indicad qué información de la fuente permite afirmarlo."],
+  ["Modus operandi",
+   "¿Cómo funcionó la estafa paso a paso? ¿A quién iba dirigida y qué se pidió a las víctimas que hicieran?"],
+  ["Magnitud del fraude",
+   "¿Cuánto dinero se perdió? ¿A cuántas personas o empresas afectó? Si algún dato no aparece en las fuentes, indicadlo."],
+  ["Desenlace y lecciones de seguridad",
+   "¿Qué se sabe de la denuncia y de la recuperación del dinero? ¿Qué medida de prevención habría sido útil en este caso?"]
+];
+
+const apartados = [
+  {
+    titulo: "Antes de empezar",
+    intro: "Responde individualmente después de leer el manual.",
+    grupos: [{titulo: "", preguntas: [
+      ["Tipos de deepfake (p. 4)",
+       "¿En qué se diferencian un deepvoice, un deepface y un deepfake en tiempo real? Explica cada término con tus palabras."],
+      ["Señales de alerta (p. 6)",
+       "¿En qué se diferencia una anomalía audiovisual de una señal de ingeniería social? Escribe un ejemplo de cada tipo que aparezca en el manual."],
+      ["Verificación por otro canal (p. 8)",
+       "Si alguien con una voz familiar te pide dinero con urgencia, ¿cómo comprobarías su identidad por un canal alternativo? Explica por qué no usarías el número que te dé esa persona."]
+    ]}]
+  },
+  {
+    titulo: "Operación Zeus",
+    intro: "Leed el caso de Santi. En equipo, investigad dos o tres estafas financieras reales, recientes y bien documentadas en las que la IA haya desempeñado un papel importante. Buscad en medios fiables u organismos de seguridad. Podéis empezar con «estafa con deepfake» o «fraude financiero inteligencia artificial». No confundáis lo que se ha confirmado con lo que solo se sospecha.",
+    grupos: [1, 2, 3].map(n => ({
+      titulo: `Caso investigado ${n}${n === 3 ? " (opcional)" : ""}`,
+      opcional: n === 3,
+      preguntas: preguntasZeus
+    }))
+  },
+  {
+    titulo: "Operación Sirena",
+    intro: "Leed el caso de Andrés y Lucía. Analizad en equipo lo ocurrido y usad vuestras conclusiones para preparar un cartel o una infografía de prevención. En esta ficha se recoge el texto, no el diseño final.",
+    grupos: [{titulo: "", preguntas: [
+      ["Señales de alerta",
+       "¿Qué indicios pasó por alto Andrés en las dos llamadas? Explicad qué debería haber comprobado antes de enviar los 100 €."],
+      ["Privacidad y suplantación",
+       "¿Qué aspectos de la privacidad y la identidad de Lucía se ven afectados? ¿Qué datos o publicaciones de redes sociales pudieron ayudar a preparar el engaño? Diferenciad lo que el caso cuenta de lo que no permite confirmar."],
+      ["Texto del cartel o la infografía",
+       "Escribid un título y un texto breve que expliquen qué es un deepvoice y cómo puede usarse en una llamada fraudulenta. Añadid qué hacer ante una petición urgente de dinero, cómo verificar la identidad por otro canal y cómo podría ayudar una palabra clave familiar. No incluyáis datos personales ni palabras clave reales."]
+    ]}]
+  }
+];
+
+const $ = id => document.getElementById(id);
+function crear(tipo, texto) {
+  const nodo = document.createElement(tipo);
+  if (texto !== undefined) nodo.textContent = texto;
+  return nodo;
+}
+
+const titulos = [...apartados.map(a => a.titulo), "descarga tu trabajo"];
+const pestanas = [];
+const paneles = [];
+const campos = [];
+
+function activar(indice) {
+  pestanas.forEach((boton, i) => {
+    boton.setAttribute("aria-selected", String(i === indice));
+    boton.tabIndex = i === indice ? 0 : -1;
+    paneles[i].hidden = i !== indice;
+  });
+}
+
+titulos.forEach((titulo, i) => {
+  const boton = crear("button", titulo);
+  boton.type = "button";
+  boton.id = `tab-${i}`;
+  boton.setAttribute("role", "tab");
+  boton.setAttribute("aria-controls", `panel-${i}`);
+  boton.addEventListener("click", () => activar(i));
+  boton.addEventListener("keydown", e => {
+    const ultimo = titulos.length - 1;
+    const destino = {
+      ArrowRight: (i + 1) % titulos.length,
+      ArrowLeft: (i + ultimo) % titulos.length,
+      Home: 0, End: ultimo
+    }[e.key];
+    if (destino === undefined) return;
+    e.preventDefault();
+    activar(destino);
+    pestanas[destino].focus();
+  });
+  $("pestanas").append(boton);
+  pestanas.push(boton);
+
+  const panel = crear("section");
+  panel.id = `panel-${i}`;
+  panel.setAttribute("role", "tabpanel");
+  panel.setAttribute("aria-labelledby", boton.id);
+  $("paneles").append(panel);
+  paneles.push(panel);
+
+  const apartado = apartados[i];
+  if (!apartado) {
+    const form = crear("form");
+    form.id = "entrega";
+    const etiqueta = crear("label", "Nombre y apellidos");
+    etiqueta.htmlFor = "nombre";
+    const nombre = crear("input");
+    nombre.id = "nombre";
+    nombre.required = true;
+    nombre.maxLength = 100;
+    nombre.autocomplete = "name";
+    const descargar = crear("button", "Descargar respuestas en PDF");
+    descargar.type = "submit";
+    form.append(etiqueta, nombre, descargar);
+    panel.append(form);
+    return;
+  }
+
+  panel.append(crear("h2", titulo), crear("p", apartado.intro));
+  campos[i] = apartado.grupos.map((grupo, g) => {
+    const contenedor = grupo.titulo ? crear("fieldset") : panel;
+    if (grupo.titulo) {
+      contenedor.append(crear("legend", grupo.titulo));
+      panel.append(contenedor);
+    }
+    return grupo.preguntas.map(([tema, pregunta], j) => {
+      const bloque = crear("div");
+      bloque.className = "pregunta";
+      const tituloPregunta = `${j + 1}. ${tema}`;
+      const etiqueta = crear("label");
+      const respuesta = crear("textarea");
+      respuesta.id = `respuesta-${i}-${g}-${j}`;
+      etiqueta.htmlFor = respuesta.id;
+      etiqueta.append(crear("strong", tituloPregunta), document.createTextNode(pregunta));
+      bloque.append(etiqueta, respuesta);
+      contenedor.append(bloque);
+      return { tituloPregunta, pregunta, respuesta };
+    });
+  });
+});
+
+activar(0);
+
+// PDF A4 de texto, generado en el navegador sin librerías externas.
+const win1252 = "€\0‚ƒ„…†‡ˆ‰Š‹Œ\0Ž\0\0‘’“”•–—˜™š›œ\0žŸ";
+function textoPDF(texto) {
+  return Array.from(texto.normalize("NFC"), c => {
+    const n = c.codePointAt(0);
+    if (n >= 32 && n <= 126) return "\\()".includes(c) ? "\\" + c : c;
+    const i = win1252.indexOf(c);
+    const byte = n >= 160 && n <= 255 ? n : i >= 0 && n !== 0 ? i + 128 : 63;
+    return "\\" + byte.toString(8).padStart(3, "0");
+  }).join("");
+}
+
+function generarPDF(nombre) {
+  const paginas = [[]];
+  const lienzo = document.createElement("canvas").getContext("2d");
+  let y = 790;
+  function nuevaPagina() { paginas.push([]); y = 790; }
+
+  function ajustar(texto, tam, negrita) {
+    lienzo.font = `${negrita ? "bold " : ""}${tam}px Arial, sans-serif`;
+    const cabe = s => lienzo.measureText(s).width <= 480;
+    return texto.split(/\r\n?|\n/).flatMap(parrafo => {
+      const lineas = [];
+      let linea = "";
+      for (const palabra of parrafo.trim().split(/\s+/)) {
+        const candidata = linea ? `${linea} ${palabra}` : palabra;
+        if (cabe(candidata)) {
+          linea = candidata;
+        } else {
+          if (linea) lineas.push(linea);
+          linea = "";
+          for (const letra of palabra) {
+            if (linea && !cabe(linea + letra)) {
+              lineas.push(linea);
+              linea = "";
+            }
+            linea += letra;
+          }
+        }
+      }
+      return [...lineas, linea];
+    });
+  }
+
+  function escribir(texto, tam = 11, negrita = false, espacio = 6) {
+    for (const linea of ajustar(texto, tam, negrita)) {
+      if (y < 55) nuevaPagina();
+      paginas[paginas.length - 1].push(
+        `BT /${negrita ? "B" : "R"} ${tam} Tf 1 0 0 1 54 ${y} Tm (${textoPDF(linea)}) Tj ET\n`
+      );
+      y -= tam + 4;
+    }
+    y -= espacio;
+  }
+
+  escribir("IA en entornos financieros digitales", 18, true);
+  escribir(`Nombre y apellidos: ${nombre}`, 12, false, 16);
+  apartados.forEach((apartado, i) => {
+    if (y < 180) nuevaPagina();
+    escribir(apartado.titulo, 15, true, 8);
+    apartado.grupos.forEach((grupo, g) => {
+      const respuestas = campos[i][g];
+      if (grupo.opcional && !respuestas.some(c => c.respuesta.value.trim())) return;
+      if (grupo.titulo) {
+        if (y < 150) nuevaPagina();
+        escribir(grupo.titulo, 12, true, 8);
+      }
+      respuestas.forEach(({ tituloPregunta, pregunta, respuesta }) => {
+        const alto = ajustar(tituloPregunta, 11, true).length * 15 +
+                     ajustar(pregunta, 10, false).length * 14;
+        if (y < 80 + alto) nuevaPagina();
+        escribir(tituloPregunta, 11, true, 2);
+        escribir(pregunta, 10, false, 4);
+        escribir(respuesta.value.trim() || "Sin responder", 11, false, 12);
+      });
+    });
+  });
+
+  const objetos = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    `<< /Type /Pages /Count ${paginas.length} /Kids [${paginas.map((_, i) => `${5 + 2*i} 0 R`).join(" ")}] >>`,
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>",
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>"
+  ];
+
+  paginas.forEach((lineas, i) => {
+    const pie = textoPDF(`Página ${i + 1} de ${paginas.length}`);
+    const contenido = lineas.join("") + `BT /R 9 Tf 1 0 0 1 54 30 Tm (${pie}) Tj ET\n`;
+    objetos.push(
+      `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /R 3 0 R /B 4 0 R >> >> /Contents ${6 + 2*i} 0 R >>`,
+      `<< /Length ${contenido.length} >>\nstream\n${contenido}endstream`
+    );
+  });
+
+  let pdf = "%PDF-1.4\n";
+  const posiciones = [];
+  objetos.forEach((objeto, i) => {
+    posiciones.push(pdf.length);
+    pdf += `${i + 1} 0 obj\n${objeto}\nendobj\n`;
+  });
+  const xref = pdf.length;
+  pdf += `xref\n0 ${objetos.length + 1}\n0000000000 65535 f \n`;
+  posiciones.forEach(p => { pdf += `${String(p).padStart(10, "0")} 00000 n \n`; });
+  pdf += `trailer\n<< /Size ${objetos.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
+  return new Blob([pdf], { type: "application/pdf" });
+}
+
+$("nombre").addEventListener("input", () => $("nombre").setCustomValidity(""));
+$("entrega").addEventListener("submit", e => {
+  e.preventDefault();
+  const nombre = $("nombre").value.trim();
+  if (!nombre) {
+    $("nombre").setCustomValidity("Escribe tu nombre y apellidos.");
+    $("nombre").reportValidity();
+    return;
+  }
+  const enlace = crear("a");
+  const url = URL.createObjectURL(generarPDF(nombre));
+  const sufijo = nombre.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "");
+  enlace.href = url;
+  enlace.download = `Ficha-IA-finanzas-${sufijo || "entrega"}.pdf`;
+  document.body.append(enlace);
+  enlace.click();
+  enlace.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+});
+</script>
+</body>
+</html>
